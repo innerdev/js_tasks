@@ -46,6 +46,10 @@ function getApiPath(obj, template) {
 		return user[paramNameWithPercent.replace(/%/g, '')];
 	});	
 	*/
+
+	/**
+		Also we can split URI by '/' delimiter. Not sure what is better, regexp or split.
+	*/
 }
 
 console.log(JSON.stringify(apiPathes));
