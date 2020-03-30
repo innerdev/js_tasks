@@ -31,18 +31,17 @@ const apiPathes = apiTemplatesSet1.map(apiPathTemplate => {
 /** Result of the test task is this function: */
 function getApiPath(obj, template) {
 	return template.replace(/\%([a-z]+)\%/g, (origin, fieldName) => {
-		let objectValue = user[fieldName];
-		if (objectValue === undefined) {
+		if (user[fieldName] === undefined) {
 			throw new Error("User object doesn't contain following field: " + fieldName);
 		}
-		return objectValue;
+		return user[fieldName];
 	});
 
 	/**
 	If we don't want to throw any exceptions and handle any errors we can just write the code like this:
-	
-	return template.replace(/(\%[a-z]+\%)/g, paramNameWithPercent => {
-		return user[paramNameWithPercent.replace(/%/g, '')];
+
+	return template.replace(/\%([a-z]+)\%/g, (origin, fieldName) => {
+		return user[fieldName];
 	});	
 	*/
 
