@@ -21,7 +21,7 @@ const apiTemplatesSet1 = [
 	"/api/items/%id%/%name%",
 	"/api/items/%id%/%role%",
 	"/api/items/%id%/%salary%",
-	// "/api/items/%id%/%not_exists_in_object%" // uncomment for testing
+	// "/api/items/%id%/%notexists%" // uncomment for testing
 ];
 
 const apiPathes = apiTemplatesSet1.map(apiPathTemplate => {
@@ -30,8 +30,7 @@ const apiPathes = apiTemplatesSet1.map(apiPathTemplate => {
 
 /** Result of the test task is this function: */
 function getApiPath(obj, template) {
-	return template.replace(/(\%[a-z]+\%)/g, paramNameWithPercent => {
-		let fieldName = paramNameWithPercent.replace(/%/g, '');
+	return template.replace(/\%([a-z]+)\%/g, (origin, fieldName) => {
 		let objectValue = user[fieldName];
 		if (objectValue === undefined) {
 			throw new Error("User object doesn't contain following field: " + fieldName);
